@@ -29,9 +29,10 @@ cd assignment-u
 ```bash
 cd backend
 npm install
+cp .env.example .env
 ```
 
-Create a `.env` file in the `backend/` folder:
+Edit the `.env` file and fill in your values:
 
 ```
 PORT=5000
@@ -39,7 +40,8 @@ MONGODB_URI=mongodb://localhost:27017/ai-flow
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-Replace `your_openrouter_api_key_here` with your actual OpenRouter API key.
+- Replace `MONGODB_URI` with your MongoDB Atlas connection string (or keep as-is for local MongoDB).
+- Replace `OPENROUTER_API_KEY` with your actual API key from [openrouter.ai](https://openrouter.ai).
 
 Start the backend:
 
@@ -54,6 +56,20 @@ Open a new terminal:
 ```bash
 cd frontend
 npm install
+cp .env.example .env
+```
+
+Edit the `.env` file:
+
+```
+VITE_API_BASE=http://localhost:5000
+```
+
+For production, set `VITE_API_BASE` to your deployed backend URL (e.g. `https://your-app.onrender.com`).
+
+Start the frontend:
+
+```bash
 npm run dev
 ```
 
@@ -65,6 +81,7 @@ The app will be available at `http://localhost:5173`.
 2. Click **Run Flow** to send it to the AI.
 3. The AI response appears in the **AI Response** node.
 4. Click **Save** to store the prompt and response in MongoDB.
+5. Click **History** to view all previously saved conversations.
 
 ## Project Structure
 
@@ -74,9 +91,10 @@ assignment-u/
 │   ├── models/
 │   │   └── Conversation.js    # Mongoose schema
 │   ├── server.js              # Express server + API routes
-│   ├── .env                   # Environment variables
+│   ├── .env.example           # Backend env template
 │   └── package.json
 ├── frontend/
+│   ├── .env.example           # Frontend env template
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── InputNode.jsx  # Custom React Flow input node
